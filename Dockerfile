@@ -90,7 +90,7 @@ RUN     sed -i '1a mkdir -p /leanote/data/data '                        /leanote
     &&  sed -i '3a sleep 8 '                                            /leanote/bin/run.sh \
     &&  sed -i '4a if [ ! -f "/leanote/date/data/leanote.0" ]; then '   /leanote/bin/run.sh \
     &&  sed -i '5a      mongorestore -h localhost -d leanote --dir /leanote/mongodb_backup/leanote_install_data/' /leanote/bin/run.sh \
-    &&  sed -i '6a fi'      
+    &&  sed -i '6a fi'                                                  /leanote/bin/run.sh 
 
 VOLUME /leanote/data/
 
