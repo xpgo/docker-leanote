@@ -69,4 +69,6 @@ services:
 
 #### 5. docker-compose up -d
 
+#### changes:
+init mogodb internally
 
