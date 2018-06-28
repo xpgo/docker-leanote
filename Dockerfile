@@ -53,7 +53,8 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14
         # Tools to export pdf
         wkhtmltopdf \
         # Tools to backup mongodb
-        mongodb-org-tools \
+        mongodb \
+        # mongodb-org-tools \
         # wkhtmltopdf headless workaround
         xvfb \
         # Additionnal dependencies for better rendering
@@ -83,6 +84,13 @@ DISPLAY=:0.0 wkhtmltopdf-origin $@ \n\
 killall Xvfb\
 ' > /usr/bin/wkhtmltopdf && \
     chmod +x /usr/bin/wkhtmltopdf
+
+RUN     sed -i '1a mkdir -p /leanote/data/data '                        /leanote/bin/run.sh \
+    &&  sed -i '2a mongod --dbpath /leanote/data/data &'                /leanote/bin/run.sh \
+    &&  sed -i '3a sleep 8 '                                            /leanote/bin/run.sh \
+    &&  sed -i '4a if [ ! -f "/leanote/date/data/leanote.0" ]; then '   /leanote/bin/run.sh \
+    &&  sed -i '5a      mongorestore -h localhost -d leanote --dir /leanote/mongodb_backup/leanote_install_data/' /leanote/bin/run.sh \
+    &&  sed -i '6a fi'      
 
 VOLUME /leanote/data/
 
