@@ -1,4 +1,5 @@
 FROM golang:1.10 as go-builder
+FROM mongo:3.2
 
 ARG LEANOTE_VERSION=2.6.1
 ARG LEANOTE_SOURCE=https://github.com/xpgo/leanote.git
@@ -53,7 +54,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14
         # Tools to export pdf
         wkhtmltopdf \
         # Tools to backup mongodb
-        mongodb \
+        # mongodb \
         # mongodb-org-tools \
         # wkhtmltopdf headless workaround
         xvfb \
