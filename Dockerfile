@@ -45,8 +45,6 @@ RUN apt-get update \
     && ln -s /leanote/data/mongodb_backup /leanote/mongodb_backup \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-FROM mongo:3.2
-
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6 \
     && echo "deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/3.4 main" \
     | tee /etc/apt/sources.list.d/mongodb-org-3.4.list \
@@ -55,7 +53,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14
         # Tools to export pdf
         wkhtmltopdf \
         # Tools to backup mongodb
-        # mongodb \
+        mongodb-org=3.2 \
         # mongodb-org-tools \
         # wkhtmltopdf headless workaround
         xvfb \
