@@ -6,7 +6,7 @@ ARG LEANOTE_SOURCE=https://github.com/xpgo/leanote.git
 RUN echo build leanote ${LEANOTE_VERSION} from ${LEANOTE_SOURCE} \
     && mkdir -p /go/src/github.com/leanote/ \
     && cd /go/src/github.com/leanote \
-    && git clone -b ${LEANOTE_VERSION} ${LEANOTE_SOURCE} \
+    && git clone ${LEANOTE_SOURCE} \
     && cd leanote \
     && go run app/cmd/main.go \
     && go build -o bin/leanote-linux-amd64 github.com/leanote/leanote/app/tmp
