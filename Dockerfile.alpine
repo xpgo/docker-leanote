@@ -1,7 +1,7 @@
 FROM golang:1.10-alpine as go-builder
 
-ARG LEANOTE_VERSION=2.6.1
-ARG LEANOTE_SOURCE=https://github.com/leanote/leanote.git
+ARG LEANOTE_VERSION=2.6
+ARG LEANOTE_SOURCE=https://github.com/xpgo/leanote.git
 
 RUN echo build leanote ${LEANOTE_VERSION} from ${LEANOTE_SOURCE} \
     && apk add --no-cache --update git \
