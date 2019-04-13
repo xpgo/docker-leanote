@@ -1,6 +1,6 @@
 FROM golang:1.10 as go-builder
 
-ARG LEANOTE_VERSION=2.6
+ARG LEANOTE_VERSION=2.6x
 ARG LEANOTE_SOURCE=https://github.com/xpgo/leanote.git
 
 RUN echo build leanote ${LEANOTE_VERSION} from ${LEANOTE_SOURCE} \
@@ -8,6 +8,7 @@ RUN echo build leanote ${LEANOTE_VERSION} from ${LEANOTE_SOURCE} \
     && cd /go/src/github.com/leanote \
     && git clone ${LEANOTE_SOURCE} \
     && cd leanote \
+    && git checkout ${LEANOTE_VERSION} \
     && go run app/cmd/main.go \
     && go build -o bin/leanote-linux-amd64 github.com/leanote/leanote/app/tmp
 
