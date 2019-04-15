@@ -39,8 +39,6 @@ RUN apt-get update \
     && mkdir -p /leanote/data/public/upload \
     && mkdir -p /leanote/data/files \
     && mkdir -p /leanote/data/mongodb_backup \
-    # && rm -r /leanote/public/upload \
-    # && rm -r /leanote/mongodb_backup \
     && ln -s /leanote/data/public/upload /leanote/public/upload \
     && ln -s /leanote/data/files /leanote/files \
     && ln -s /leanote/data/mongodb_backup /leanote/mongodb_backup \
@@ -85,13 +83,6 @@ DISPLAY=:0.0 wkhtmltopdf-origin $@ \n\
 killall Xvfb\
 ' > /usr/bin/wkhtmltopdf && \
     chmod +x /usr/bin/wkhtmltopdf
-
-RUN     sed -i '1a mkdir -p /leanote/data/data '                        /leanote/bin/run.sh \
-    &&  sed -i '2a mongod --dbpath /leanote/data/data &'                /leanote/bin/run.sh \
-    &&  sed -i '3a sleep 8 '                                            /leanote/bin/run.sh \
-    &&  sed -i '4a if [ ! -f "/leanote/date/data/leanote.0" ]; then '   /leanote/bin/run.sh \
-    &&  sed -i '5a      mongorestore -h localhost -d leanote --dir /leanote/mongodb_backup/leanote_install_data/' /leanote/bin/run.sh \
-    &&  sed -i '6a fi'                                                  /leanote/bin/run.sh 
 
 VOLUME /leanote/data/
 
